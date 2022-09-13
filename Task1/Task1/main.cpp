@@ -16,6 +16,10 @@ double getA(const double x, const double y);
 * \ return Return b value
 */
 double getB(const double x, const double y, const double z);
+/*
+* \brief Enterint the program
+* \return Returns 0 if succes
+*/
 int main()
 {
 	const double x = 1.825;
