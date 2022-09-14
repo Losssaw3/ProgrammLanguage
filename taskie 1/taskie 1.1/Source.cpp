@@ -1,19 +1,20 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
+using namespace std;
 /**
-* \ brief calculates the value of a
-* \ param x the first argument of the function
-* \ param y the second argument of the function
-* \ return Return a value
+* \brief calculates the value of a
+* \param x the first argument of the function
+* \param y the second argument of the function
+* \return Return a value
 */
 double getA(const double x, const double y);
 /**
-* \ brief calculates the value of b
-* \ param x the first argument of the function
-* \ param y the second argument of the function
-* \ param z the third argument of the function
-* \ return Return b value
+* \brief calculates the value of b
+* \param x the first argument of the function
+* \param y the second argument of the function
+* \param z the third argument of the function
+* \return Return b value
 */
 double getB(const double x, const double y, const double z);
 /*
