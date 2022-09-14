@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
-using namespace std;
 /**
 * \ brief calculates the value of a
 * \ param x the first argument of the function
