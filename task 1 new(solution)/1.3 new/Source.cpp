@@ -6,14 +6,14 @@ using namespace std;
 * \param Второй агрумент - ускорение свободного падения
 * \return Возвращает значение веса тела
 */
-double GetWeight(double Mass, double GravityAcceleration);
+const double getWeight(const double mass,const double GRAVITYACCELERATION);
 /**
 * \brief Функция определяющая силу тяжести
 * \param Первый аргумент - масса тела
 * \param Второй агрумент - ускорение свободного падения
 * \return Возвращает значение силы тяжести
 */
-double GetGravityForse(double Mass, double GravityAcceleration);
+const double getGravityForse(const double mass,const double GRAVITYACCELERATION);
 /**
 * \brief Точка входа в программу 
 * \return 0 в случае успеха
@@ -21,25 +21,25 @@ double GetGravityForse(double Mass, double GravityAcceleration);
 int main()
 {
 	setlocale(LC_ALL, "Rus");
-	double GravityAcceleration = 9.8;
-	double Mass = 0.0;
+	const double GRAVITYACCELERATION = 9.8;
+	double mass = 0.0;
 	cout << "Введите массу тела" << endl;
-	cin >> Mass;
-	if (Mass < 0)
+	cin >> mass;
+	if (mass < 0)
 	{
 		cout << "Недопустимое значение массы" << endl;
 		return 1;
 	}
-	double Weight = GetWeight(Mass, GravityAcceleration);
-	double GravityForse = GetGravityForse(Mass, GravityAcceleration);
-	cout << "Сила тяжести = " << GravityForse << '\n' << "Вес тела = " << Weight << endl;
+	const double weight = getWeight(mass, GRAVITYACCELERATION);
+	const double gravityForse = getGravityForse(mass, GRAVITYACCELERATION);
+	cout << "Сила тяжести = " << gravityForse << '\n' << "Вес тела = " << weight << endl;
 	return 0;
 }
-double GetWeight(double Mass, double GravityAcceleration)
+const double getWeight(const double mass, const double GRAVITYACCELERATION)
 {
-	return (Mass * GravityAcceleration);
+	return (mass * GRAVITYACCELERATION);
 }
-double GetGravityForse(double Mass, double GravityAcceleration)
+const double getGravityForse(const double mass, const double GRAVITYACCELERATION)
 {
-	return (Mass * GravityAcceleration);
+	return (mass * GRAVITYACCELERATION);
 }
