@@ -7,19 +7,19 @@ using namespace std;
 * \param Аргумент функции (ребро куба)
 * \return Возвращает значение площади грани куба
 */
-double GetFaceArea(double CubeEdge);
+const double getFaceArea(const double cubeEdge);
 /***
 * \brief Функция определяющая объем куба
 * \param Аргумент функции (ребро куба)
 * \return Возвращает значение объема куба
 */
-double GetCubeVolume(double CubeEdge);
+const double getCubeVolume(const double cubeEdge);
 /***
 * \brief Функция определяющая площадь полной поверхности куба
 * \param Аргумент функции (ребро куба)
 * \return Возвращает значение площади полной поверхности куба
 */
-double GetFullFaceArea(double CubeEdge);
+const double getFullFaceArea(const double cubeEdge);
 /***
 * \brief Вхождение в программу
 * \return Возвращает 0 в случае успеха
@@ -27,15 +27,15 @@ double GetFullFaceArea(double CubeEdge);
 int main()
 {
     setlocale(LC_ALL, "Rus");
-    double CubeEdge = 0.0;
+    double cubeEdge = 0.0;
     cout << "Введите размер ребра куба" << endl;
-    cin >> CubeEdge;
-    const double FaceArea = GetFaceArea(CubeEdge);
-    const double CubeVolume = GetCubeVolume(CubeEdge);
-    const double FullFaceArea = GetFullFaceArea(CubeEdge);
-    if (CubeEdge > 0)
+    cin >> cubeEdge;
+    const double faceArea = getFaceArea(cubeEdge);
+    const double cubeVolume = getCubeVolume(cubeEdge);
+    const double fullFaceArea = getFullFaceArea(cubeEdge);
+    if (cubeEdge > 0)
     {
-        cout << "Объем куба = " << CubeVolume << "\n" << "Площадь полной поверхности = " << FullFaceArea << "\n" << "Площадь грани = " << FaceArea << endl;
+        cout << "Объем куба = " << cubeVolume << "\n" << "Площадь полной поверхности = " << fullFaceArea << "\n" << "Площадь грани = " << faceArea << endl;
     }
     else
     {
@@ -43,15 +43,15 @@ int main()
     }
     return 0;
 }
-double GetFaceArea(double CubeEdge)
+const double getFaceArea(const double cubeEdge)
 {
-    return CubeEdge * CubeEdge;
+    return cubeEdge * cubeEdge;
 }
-double GetCubeVolume(double CubeEdge)
+const double getCubeVolume(const double cubeEdge)
 {
-    return (CubeEdge * CubeEdge * CubeEdge);
+    return (cubeEdge * cubeEdge * cubeEdge);
 }
-double GetFullFaceArea(double CubeEdge)
+const double getFullFaceArea(const double cubeEdge)
 {
-    return (CubeEdge * CubeEdge * 6);
+    return (cubeEdge * cubeEdge * 6);
 }
