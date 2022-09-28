@@ -142,8 +142,9 @@ int main()
 {
     setlocale(LC_ALL, "Rus");
     srand(time(NULL));
-    int row, col,limit;
-    limit = 100;
+    int row;
+    int col;
+    const int limit = 100;
     cout << "Введите кол-во строк массива" << endl;
     cin >> row;
     cout << "Введите кол-во рядов массива" << endl;
