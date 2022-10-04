@@ -1,13 +1,19 @@
 ﻿#include <iostream>
+
 #include <ctime>
+
 #include <random>//new array delete mass
 using namespace std;
+/*
+*\brief Функция считывающая размеры массива
+*\param message Побуждающее сообщение (подсказка для пользователя)
+*\return Возвращает размеры массива
+*/
 size_t getSize(const string& message);
 /*
-*\brief Функция для выбора вида заполнения массива
+*\brief Выбор типа заполнения массива
 *\param random - Случайное заполнение
 *\param userInput - Пользовательский ввод
-*\return Способ заполнения массива
 */
 enum class fillArray
 {
@@ -18,25 +24,21 @@ enum class fillArray
 *\brief Фукция удаляющая массив
 *\param **arr - указатель на массив
 *\param row - кол-во строк в массиве
-*\return удаляет массив
 */
-const void deleteArray(int**& arr, const size_t row);
+void deleteArray(int**& arr, const size_t row);
 /*
 *\brief Фукция создающая двухмерный массив 
-*\param **arr - указатель на массив
 *\param row - кол-во строк в массиве
-*\param col - кол-во столбцов в массиве
-*\return Возвращает двухмерный массив
+*\return Возвращает указатель на массив
 */
-const void createArray(int** arr, const size_t row, const size_t col);
+int** createArray(const size_t row, const size_t col);
 /*
 *\brief Фукция выводящая на экран массив
 *\param **arr - указатель на массив
 *\param row - кол-во строк в массиве
 *\param col - кол-во столбцов в массиве
-*\return Возвращает массив
 */
-const void printArray(int** arr, const size_t row, const size_t  col);
+void printArray(int** arr, const size_t row, const size_t  col);
 /*
 *\brief Фукция которая ищет кол-во столбцов , в которых первый элемент больше последнего
 *\param **arr - указатель на массив
@@ -47,31 +49,28 @@ const void printArray(int** arr, const size_t row, const size_t  col);
 int searchForCounter(int** arr, const size_t row, const size_t col);
 /*
 *\brief Фукция которая заполняет массив случайными элементами
-*\param **arr - указатель на массив
 *\param row - кол-во строк в массиве
 *\param col - кол-во столбцов в массиве
 *\param minValue нижняя граница рандома
 *\param maxValue верхняя граница рандома
-*\return Возвращает массив , заполненный случайными элементами
+*\return Возвращает указатель на заполненный массив
 */
-const void FillRandomArray(int** arr, const size_t row, const size_t col, const int minValue, const int maxValue);
+int** fillRandomArray(const size_t row, const size_t col, const int minValue, const int maxValue);
+/*
+*\brief Функция создающая массив с номерами столбцов, в которых первый элемент меньше последнего
+*\param **arr указатель на массив , столбцы которого необходимо анализировать
+*\param row - кол-во строк в массиве
+*\param col - кол-во столбцов в массиве
+*\return Возвращает указатель на массив с номерами столбцов, в которых первый элемент меньше последнего
+*/
+int* colNumbers(int** arr, const size_t row, const size_t col);
 /*
 *\brief Фукция заполняющая массив пользовательским вводом
-*\param **arr - указатель на массив
 *\param row - кол-во строк в массиве
 *\param col - кол-во столбцов в массиве
-*\return Возвращает массив , заполненный пользователем
+*\return Возвращает указатель на заполненный массив
 */
-const void fillManualArray(int** arr, const size_t row, const size_t col);
-/*
-*\brief Фукция копирующая массив
-*\param **arrOrigin - массив который будет скопирован
-*\param **arrCopy - новый, скопированный массив
-*\param row - кол-во строк в массиве
-*\param col - кол-во столбцов в массиве
-*\return Возвращает новый масссив , совпадающий со старым
-*/
-const void copyArray(int** arrOrigin, int** arrCopy, const size_t row, const size_t col);
+int** fillManualArray(const size_t row, const size_t col);
 /*
 *\brief Фукция которая ищет минимальный по модулю элемент столбца
 *\param row - кол-во строк в массиве
@@ -83,19 +82,19 @@ int searchForMini(int** arr, const size_t row, const size_t col, size_t i);
 /*
 *\brief Фукция ,заменяющая минимальный по модулю элемент столбца массива нулем
 *\param **arr - указатель на массив
+*\param **arrChanged указатель на массив, минимальные элементы которого будут заменены
 *\param row - кол-во строк в массиве
 *\param col - кол-во столбцов в массиве
-*\return Возвращает измененный массив
 */
-const void changeArray(int** arr, const size_t row, const size_t col);
+void changeArray(int** arr, int** arrChanged, const size_t row, const size_t col);
 /*
 *\brief Фукция удаляющая в массиве столбцы, первый элемент которых больше последнего
 *\param **arr - указатель на массив
+*\param **arrNew указатель на массив с удаленными столбцами
 *\param row - кол-во строк в массиве
 *\param col - кол-во столбцов в массиве
-*\return Возвращает массив с измененным кол-вом столбцов
 */
-const void newArray(int** arr, const size_t row, const size_t col);
+void newArray(int** arr, int** arrNew, const size_t row, const size_t col);//doc
 /*
 *\brief Точка входа в программу
 *\return возвращает 0 в случае успеха
@@ -108,8 +107,7 @@ int main()
     const int maxValue = 100;
     row = getSize("Bведите кол-во строк\n");
     col = getSize ("Введите кол-во рядов массива\n");
-    int** arr = new int* [row];
-    createArray(arr, row, col);
+    int** arr = createArray(row, col);
     cout << "Как следует заполнить массив?" << "\n" << static_cast<int>(fillArray::random) << '\t' << "Случайно" << "\n" << static_cast <int>(fillArray::userInput) << '\t' << "Пользовательский ввод" << endl;
     int input = 0;
     cin >> input;
@@ -118,12 +116,12 @@ int main()
     {
     case(fillArray::random):
     {
-        FillRandomArray(arr, row, col,minValue,maxValue);
+        arr = fillRandomArray(row, col, minValue, maxValue);
         break;
     }
     case(fillArray::userInput):
     {
-        fillManualArray(arr, row, col);
+        arr = fillManualArray(row, col);
         break;
     }
     default:
@@ -132,13 +130,31 @@ int main()
     }
         break;
     }
+    //Пункт 1
+    int** arrChanged = createArray(row, col);
+    changeArray(arr, arrChanged, row, col);
+    //Пункт 2
+    int counter = searchForCounter(arr, row, col);
+    int** arrNum = createArray(row, col - counter);
+    if (col - counter > 0)
+    {
+        newArray(arr, arrNum, row, col);
+    }
+    else
+    {
+        cout << "Все столбца были удалены, новый массив пуст!" << endl;
+    }
+    //Вывод
     cout << "Начальный массив" << endl;
     printArray(arr, row, col);
     cout << "Массив с измененными минимальными элементами" << endl;
-    changeArray(arr, row, col);
+    printArray(arrChanged, row, col);
     cout << "Массив с удаленными столбцами" << endl;
-    newArray(arr, row, col);
+    printArray(arrNum, row, col-counter);
+    //Удаление
     deleteArray(arr, row);
+    deleteArray(arrChanged, row);
+    deleteArray(arrNum, row);
     return 0;
 }
 size_t getSize(const string& message)
@@ -152,7 +168,7 @@ size_t getSize(const string& message)
     }
     return size;
 }
-const void deleteArray(int**& arr, const size_t row)
+void deleteArray(int**& arr, const size_t row)
 {
     if (arr != nullptr)
     {
@@ -164,12 +180,14 @@ const void deleteArray(int**& arr, const size_t row)
         arr = nullptr;
     }
 }
-const void createArray(int** arr, const size_t row, const size_t col)
+int** createArray(const size_t row, const size_t col)
 {
+    int** arr = new int* [row];
     for (size_t i = 0; i < row; i++)
         arr[i] = new int[col];
+    return arr;
 }
-const void printArray(int** arr, const size_t row, const size_t  col)
+void printArray(int** arr, const size_t row, const size_t  col)
 {
     for (size_t i = 0; i < row; i++)
     {
@@ -183,17 +201,21 @@ const void printArray(int** arr, const size_t row, const size_t  col)
 int searchForCounter(int** arr, const size_t row, const size_t col)
 {
     int counter = 0;
-    for (size_t i = 0; i < col; i++)
+    if (row > 0)
     {
-        if (arr[0][i] > arr[row - 1][i])
+        for (size_t i = 0; i < col; i++)
         {
-            counter += 1;
+            if (arr[0][i] > arr[row - 1][i])
+            {
+                counter += 1;
+            }
         }
-    }
-    return counter;
+        return counter;
+    }  
 }
-const void FillRandomArray(int** arr, const size_t row, const size_t col, const int minValue, const int maxValue)
+int** fillRandomArray(const size_t row, const size_t col, const int minValue, const int maxValue)
 {
+    int** arr = createArray(row, col);
     random_device rd;
     mt19937 gen(rd());
     uniform_int_distribution<> uniformIntDistribution(minValue, maxValue);
@@ -204,9 +226,11 @@ const void FillRandomArray(int** arr, const size_t row, const size_t col, const 
             arr[i][j] = uniformIntDistribution(gen);
         }
     }
+    return arr;
 }
-const void fillManualArray(int** arr, const size_t row, const size_t col)
+int** fillManualArray(const size_t row, const size_t col)
 {
+    int** arr = createArray(row, col);
     for (size_t i = 0; i < row; i++)
     {
         for (size_t j = 0; j < col; j++)
@@ -216,15 +240,29 @@ const void fillManualArray(int** arr, const size_t row, const size_t col)
             arr[i][j] = x;
         }
     }
+    return arr;
 }
-const void copyArray(int** arrOrigin, int** arrCopy, const size_t row, const size_t col)
+int* colNumbers(int** arr, const size_t row, const size_t col)
 {
-    for (size_t i = 0; i < row; i++)
+    int counter = searchForCounter(arr, row, col);
+    int* arrCheck = new int[(col - counter)];
+    counter = 0;
+    if (row > 0)
     {
-        for (size_t j = 0; j < col; j++)
+        for (size_t i = 0; i < col; i++)
         {
-            arrCopy[i][j] = arrOrigin[i][j];
+            if (arr[0][i] <= arr[row - 1][i])
+            {
+                counter += 1;
+                arrCheck[counter - 1] = i;
+            }
         }
+    }
+    return arrCheck;
+    if (arrCheck != nullptr)
+    {
+        delete[] arrCheck;
+        arrCheck = nullptr;
     }
 }
 int searchForMini(int** arr, const size_t row, const size_t col, size_t i)
@@ -239,62 +277,32 @@ int searchForMini(int** arr, const size_t row, const size_t col, size_t i)
     }
     return mini;
 }
-const void changeArray(int** arr, const size_t row, const size_t col)
+void changeArray(int** arr,int** arrChanged, const size_t row, const size_t col)
 {
-    int** arrChanged = new int* [row];
-    createArray(arrChanged, row, col);
-    copyArray(arr, arrChanged, row, col);
     for (size_t i = 0; i < col; i++)
     {
         for (size_t j = 0; j < row; j++)
         {
-            if (abs(arr[j][i]) == searchForMini(arr, row, col, i))
+            if (std::abs(arr[j][i]) == searchForMini(arr, row, col, i))
             {
                 arrChanged[j][i] = 0;
             }
-        }
-    }
-    printArray(arrChanged, row, col);
-    deleteArray(arrChanged, row);
-}
-const void newArray(int** arr, const size_t row, const size_t col)
-{
-    int counter = searchForCounter(arr, row, col);
-    int** arrNum = new int* [row];
-    createArray(arrNum, row, col - counter);
-    int* arrCheck = new int[(col - counter)];
-    counter = 0;
-    for (int i = 0; i < col; i++)
-    {
-        if (arr[0][i] <= arr[row - 1][i])
-        {
-            counter += 1;
-            arrCheck[counter - 1] = i;
-        }
-    }
-    if (counter != 0)
-    {
-        for (int i = 0; i < row; i++)
-        {
-
-            for (int j = 0; j < counter; j++)
+            else
             {
-                arrNum[i][j] = arr[i][arrCheck[j]];
+                arrChanged[j][i] = arr[j][i];
             }
         }
-        printArray(arrNum, row, counter);
-    }
-    else
+    }   
+}
+void newArray(int** arr,int** arrNew, const size_t row, const size_t col)
+{
+    int counter = searchForCounter(arr, row, col);
+    int* arrCheck = colNumbers(arr, row, col);
+    for (size_t i = 0; i < row; i++)
     {
-        if (counter == 0)
-        {
-            cout << "Все столбцы массивы были удалены" << endl;
-        }
+       for (size_t j = 0; j < col - counter; j++)
+       {
+            arrNew[i][j] = arr[i][arrCheck[j]];
+       }
     }
-    if (arrCheck != nullptr)
-    {
-        delete[] arrCheck;
-        arrCheck = nullptr;
-    }
-    deleteArray(arrNum, row);
 }
