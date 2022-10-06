@@ -8,6 +8,7 @@ using namespace std;
 *\param message Побуждающее сообщение (подсказка для пользователя)
 *\return Возвращает размеры массива
 */
+
 size_t getSize(const string& message);
 
 /*
@@ -115,9 +116,8 @@ int main()
     setlocale(LC_ALL, "Rus");
     const int minValue = -100;
     const int maxValue = 100;
-    int row, column;
-    row = getSize("Bведите кол-во строк\n");
-    column = getSize ("Введите кол-во рядов массива\n");
+    int row = getSize("Bведите кол-во строк\n");
+    int column = getSize ("Введите кол-во рядов массива\n");
     int** array = createArray(row, column);
 
     cout << "Как следует заполнить массив?" << "\n" << static_cast<int>(fillarray::random) << '\t' << "Случайно" << "\n" << static_cast <int>(fillarray::userInput) << '\t' << "Пользовательский ввод" << endl;
