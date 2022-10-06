@@ -1,100 +1,111 @@
 ﻿#include <iostream>
-
 #include <ctime>
-
-#include <random>//new array delete mass
+#include <random>
 using namespace std;
+
 /*
 *\brief Функция считывающая размеры массива
 *\param message Побуждающее сообщение (подсказка для пользователя)
 *\return Возвращает размеры массива
 */
 size_t getSize(const string& message);
+
 /*
 *\brief Выбор типа заполнения массива
 *\param random - Случайное заполнение
 *\param userInput - Пользовательский ввод
 */
-enum class fillArray
+enum class fillarray
 {
 	random,
 	userInput
 };
+
 /*
 *\brief Фукция удаляющая массив
-*\param **arr - указатель на массив
+*\param array - указатель на массив
 *\param row - кол-во строк в массиве
 */
-void deleteArray(int**& arr, const size_t row);
+void deleteArray(int**& array, const size_t row);
+
 /*
 *\brief Фукция создающая двухмерный массив 
 *\param row - кол-во строк в массиве
 *\return Возвращает указатель на массив
 */
-int** createArray(const size_t row, const size_t col);
+int** createArray(const size_t row, const size_t column);
+
 /*
 *\brief Фукция выводящая на экран массив
-*\param **arr - указатель на массив
+*\param array - указатель на массив
 *\param row - кол-во строк в массиве
-*\param col - кол-во столбцов в массиве
+*\param column - кол-во столбцов в массиве
 */
-void printArray(int** arr, const size_t row, const size_t  col);
+void printArray(int** array, const size_t row, const size_t  column);
+
 /*
 *\brief Фукция которая ищет кол-во столбцов , в которых первый элемент больше последнего
-*\param **arr - указатель на массив
+*\param array - указатель на массив
 *\param row - кол-во строк в массиве
-*\param col - кол-во столбцов в массиве
+*\param column - кол-во столбцов в массиве
 *\return Возвращает кол-во столбцов , в которых первый элемент больше последнего
 */
-int searchForCounter(int** arr, const size_t row, const size_t col);
+int searchForCounter(int** array, const size_t row, const size_t column);
+
 /*
 *\brief Фукция которая заполняет массив случайными элементами
 *\param row - кол-во строк в массиве
-*\param col - кол-во столбцов в массиве
+*\param column - кол-во столбцов в массиве
 *\param minValue нижняя граница рандома
 *\param maxValue верхняя граница рандома
 *\return Возвращает указатель на заполненный массив
 */
-int** fillRandomArray(const size_t row, const size_t col, const int minValue, const int maxValue);
+int** fillRandomArray(const size_t row, const size_t column, const int minValue, const int maxValue);
+
 /*
 *\brief Функция создающая массив с номерами столбцов, в которых первый элемент меньше последнего
-*\param **arr указатель на массив , столбцы которого необходимо анализировать
+*\param **array указатель на массив , столбцы которого необходимо анализировать
 *\param row - кол-во строк в массиве
-*\param col - кол-во столбцов в массиве
+*\param column - кол-во столбцов в массиве
 *\return Возвращает указатель на массив с номерами столбцов, в которых первый элемент меньше последнего
 */
-int* colNumbers(int** arr, const size_t row, const size_t col);
+int* columnNumbers(int** array, const size_t row, const size_t column);
+
 /*
 *\brief Фукция заполняющая массив пользовательским вводом
 *\param row - кол-во строк в массиве
-*\param col - кол-во столбцов в массиве
+*\param column - кол-во столбцов в массиве
 *\return Возвращает указатель на заполненный массив
 */
-int** fillManualArray(const size_t row, const size_t col);
+int** fillManualArray(const size_t row, const size_t column);
+
 /*
 *\brief Фукция которая ищет минимальный по модулю элемент столбца
 *\param row - кол-во строк в массиве
-*\param col - кол-во столбцов в массиве
+*\param column - кол-во столбцов в массиве
 *\param i - номер строки, в котоой следует искать минимум
 *\return Возвращает минимальный по модулю элемент столбца
 */
-int searchForMini(int** arr, const size_t row, const size_t col, size_t i);
+int searchForMini(int** array, const size_t row, const size_t column, size_t i);
+
 /*
 *\brief Фукция ,заменяющая минимальный по модулю элемент столбца массива нулем
-*\param **arr - указатель на массив
-*\param **arrChanged указатель на массив, минимальные элементы которого будут заменены
+*\param array - указатель на массив
+*\param arrayChanged указатель на массив, минимальные элементы которого будут заменены
 *\param row - кол-во строк в массиве
-*\param col - кол-во столбцов в массиве
+*\param column - кол-во столбцов в массиве
 */
-void changeArray(int** arr, int** arrChanged, const size_t row, const size_t col);
+void changeArray(int** array, int** arrayChanged, const size_t row, const size_t column);
+
 /*
 *\brief Фукция удаляющая в массиве столбцы, первый элемент которых больше последнего
-*\param **arr - указатель на массив
-*\param **arrNew указатель на массив с удаленными столбцами
+*\param array - указатель на массив
+*\param arrayNew указатель на массив с удаленными столбцами
 *\param row - кол-во строк в массиве
-*\param col - кол-во столбцов в массиве
+*\param column - кол-во столбцов в массиве
 */
-void newArray(int** arr, int** arrNew, const size_t row, const size_t col);//doc
+void newArray(int** array, int** arrayNew, const size_t row, const size_t column);//doc
+
 /*
 *\brief Точка входа в программу
 *\return возвращает 0 в случае успеха
@@ -102,26 +113,27 @@ void newArray(int** arr, int** arrNew, const size_t row, const size_t col);//doc
 int main()
 {
     setlocale(LC_ALL, "Rus");
-    int row,col;
     const int minValue = -100;
     const int maxValue = 100;
+    int row, column;
     row = getSize("Bведите кол-во строк\n");
-    col = getSize ("Введите кол-во рядов массива\n");
-    int** arr = createArray(row, col);
-    cout << "Как следует заполнить массив?" << "\n" << static_cast<int>(fillArray::random) << '\t' << "Случайно" << "\n" << static_cast <int>(fillArray::userInput) << '\t' << "Пользовательский ввод" << endl;
+    column = getSize ("Введите кол-во рядов массива\n");
+    int** array = createArray(row, column);
+
+    cout << "Как следует заполнить массив?" << "\n" << static_cast<int>(fillarray::random) << '\t' << "Случайно" << "\n" << static_cast <int>(fillarray::userInput) << '\t' << "Пользовательский ввод" << endl;
     int input = 0;
     cin >> input;
-    const auto choice = static_cast<fillArray>(input);
+    const auto choice = static_cast<fillarray>(input);
     switch (choice)
     {
-    case(fillArray::random):
+    case(fillarray::random):
     {
-        arr = fillRandomArray(row, col, minValue, maxValue);
+        array = fillRandomArray(row, column, minValue, maxValue);
         break;
     }
-    case(fillArray::userInput):
+    case(fillarray::userInput):
     {
-        arr = fillManualArray(row, col);
+        array = fillManualArray(row, column);
         break;
     }
     default:
@@ -131,14 +143,14 @@ int main()
         break;
     }
     //Пункт 1
-    int** arrChanged = createArray(row, col);
-    changeArray(arr, arrChanged, row, col);
+    int** arrayChanged = createArray(row, column);
+    changeArray(array, arrayChanged, row, column);
     //Пункт 2
-    int counter = searchForCounter(arr, row, col);
-    int** arrNum = createArray(row, col - counter);
-    if (col - counter > 0)
+    int counter = searchForCounter(array, row, column);
+    int** arrayNum = createArray(row, column - counter);
+    if (column - counter > 0)
     {
-        newArray(arr, arrNum, row, col);
+        newArray(array, arrayNum, row, column);
     }
     else
     {
@@ -146,17 +158,18 @@ int main()
     }
     //Вывод
     cout << "Начальный массив" << endl;
-    printArray(arr, row, col);
+    printArray(array, row, column);
     cout << "Массив с измененными минимальными элементами" << endl;
-    printArray(arrChanged, row, col);
+    printArray(arrayChanged, row, column);
     cout << "Массив с удаленными столбцами" << endl;
-    printArray(arrNum, row, col-counter);
+    printArray(arrayNum, row, column-counter);
     //Удаление
-    deleteArray(arr, row);
-    deleteArray(arrChanged, row);
-    deleteArray(arrNum, row);
+    deleteArray(array, row);
+    deleteArray(arrayChanged, row);
+    deleteArray(arrayNum, row);
     return 0;
 }
+
 size_t getSize(const string& message)
 {
     int size = -1;
@@ -168,44 +181,48 @@ size_t getSize(const string& message)
     }
     return size;
 }
-void deleteArray(int**& arr, const size_t row)
+
+void deleteArray(int**& array, const size_t row)
 {
-    if (arr != nullptr)
+    if (array != nullptr)
     {
         for (size_t i = 0; i < row; i++)
         {
-            delete[] arr[i];
+            delete[] array[i];
         }
-        delete[] arr;
-        arr = nullptr;
+        delete[] array;
+        array = nullptr;
     }
 }
-int** createArray(const size_t row, const size_t col)
+
+int** createArray(const size_t row, const size_t column)
 {
-    int** arr = new int* [row];
+    int** array = new int* [row];
     for (size_t i = 0; i < row; i++)
-        arr[i] = new int[col];
-    return arr;
+        array[i] = new int[column];
+    return array;
 }
-void printArray(int** arr, const size_t row, const size_t  col)
+
+void printArray(int** array, const size_t row, const size_t  column)
 {
     for (size_t i = 0; i < row; i++)
     {
-        for (size_t j = 0; j < col; j++)
+        for (size_t j = 0; j < column; j++)
         {
-            cout << arr[i][j] << '\t';
+            cout << array[i][j] << '\t';
         }
         cout << '\n';
     }
 }
-int searchForCounter(int** arr, const size_t row, const size_t col)
+
+int searchForCounter(int** array, const size_t row, const size_t column)
 {
     int counter = 0;
     if (row > 0)
     {
-        for (size_t i = 0; i < col; i++)
+        for (size_t i = 0; i < column; i++)
         {
-            if (arr[0][i] > arr[row - 1][i])
+            if (array[0][i] > array[row - 1][i])
             {
                 counter += 1;
             }
@@ -213,96 +230,97 @@ int searchForCounter(int** arr, const size_t row, const size_t col)
         return counter;
     }  
 }
-int** fillRandomArray(const size_t row, const size_t col, const int minValue, const int maxValue)
+
+int** fillRandomArray(const size_t row, const size_t column, const int minValue, const int maxValue)
 {
-    int** arr = createArray(row, col);
+    int** array = createArray(row, column);
     random_device rd;
     mt19937 gen(rd());
     uniform_int_distribution<> uniformIntDistribution(minValue, maxValue);
     for (size_t i = 0; i < row; i++)
     {
-        for (size_t j = 0; j < col; j++)
+        for (size_t j = 0; j < column; j++)
         {
-            arr[i][j] = uniformIntDistribution(gen);
+            array[i][j] = uniformIntDistribution(gen);
         }
     }
-    return arr;
+    return array;
 }
-int** fillManualArray(const size_t row, const size_t col)
+
+int** fillManualArray(const size_t row, const size_t column)
 {
-    int** arr = createArray(row, col);
+    int** array = createArray(row, column);
     for (size_t i = 0; i < row; i++)
     {
-        for (size_t j = 0; j < col; j++)
+        for (size_t j = 0; j < column; j++)
         {
             int x;
             cin >> x;
-            arr[i][j] = x;
+            array[i][j] = x;
         }
     }
-    return arr;
+    return array;
 }
-int* colNumbers(int** arr, const size_t row, const size_t col)
+
+int* columnNumbers(int** array, const size_t row, const size_t column)
 {
-    int counter = searchForCounter(arr, row, col);
-    int* arrCheck = new int[(col - counter)];
+    int counter = searchForCounter(array, row, column);
+    int* arrayCheck = new int[(column - counter)];
     counter = 0;
     if (row > 0)
     {
-        for (size_t i = 0; i < col; i++)
+        for (size_t i = 0; i < column; i++)
         {
-            if (arr[0][i] <= arr[row - 1][i])
+            if (array[0][i] <= array[row - 1][i])
             {
                 counter += 1;
-                arrCheck[counter - 1] = i;
+                arrayCheck[counter - 1] = i;
             }
         }
     }
-    return arrCheck;
-    if (arrCheck != nullptr)
-    {
-        delete[] arrCheck;
-        arrCheck = nullptr;
-    }
+    return arrayCheck;
 }
-int searchForMini(int** arr, const size_t row, const size_t col, size_t i)
+
+int searchForMini(int** array, const size_t row, const size_t column, size_t i)
 {
-    int mini = std::abs(arr[0][i]);
+    int mini = std::abs(array[0][i]);
     for (size_t j = 0; j < row; j++)
     {
-        if (std::abs(arr[j][i]) < mini)
+        if (std::abs(array[j][i]) < mini)
         {
-            mini = std::abs(arr[j][i]);
+            mini = std::abs(array[j][i]);
         }
     }
     return mini;
 }
-void changeArray(int** arr,int** arrChanged, const size_t row, const size_t col)
+
+void changeArray(int** array,int** arrayChanged, const size_t row, const size_t column)
 {
-    for (size_t i = 0; i < col; i++)
+    for (size_t i = 0; i < column; i++)
     {
         for (size_t j = 0; j < row; j++)
         {
-            if (std::abs(arr[j][i]) == searchForMini(arr, row, col, i))
+            if (std::abs(array[j][i]) == searchForMini(array, row, column, i))
             {
-                arrChanged[j][i] = 0;
+                arrayChanged[j][i] = 0;
             }
             else
             {
-                arrChanged[j][i] = arr[j][i];
+                arrayChanged[j][i] = array[j][i];
             }
         }
     }   
 }
-void newArray(int** arr,int** arrNew, const size_t row, const size_t col)
+
+void newArray(int** array,int** arrayNew, const size_t row, const size_t column)
 {
-    int counter = searchForCounter(arr, row, col);
-    int* arrCheck = colNumbers(arr, row, col);
+    int counter = searchForCounter(array, row, column);
+    int* arrayCheck = columnNumbers(array, row, column);
     for (size_t i = 0; i < row; i++)
     {
-       for (size_t j = 0; j < col - counter; j++)
+       for (size_t j = 0; j < column - counter; j++)
        {
-            arrNew[i][j] = arr[i][arrCheck[j]];
+            arrayNew[i][j] = array[i][arrayCheck[j]];
        }
     }
 }
