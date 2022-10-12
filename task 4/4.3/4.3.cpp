@@ -148,19 +148,20 @@ int main()
     //Пункт 2
     int counter = searchForCounter(array, row, column);
     int** arrayNum = createArray(row, column - counter);
+    //Вывод
+    cout << "Начальный массив" << endl;
+    printArray(array, row, column);
+    cout << "Массив с измененными минимальными элементами" << endl;
+    printArray(arrayChanged, row, column);
     if (column - counter > 0)
     {
         newArray(array, arrayNum, row, column);
     }
     else
     {
-        cout << "Все столбца были удалены, новый массив пуст!" << endl;
+        cout << "Введенный массив пуст или все столбца были удалены, новый массив пуст!" << endl;
+        return 1;
     }
-    //Вывод
-    cout << "Начальный массив" << endl;
-    printArray(array, row, column);
-    cout << "Массив с измененными минимальными элементами" << endl;
-    printArray(arrayChanged, row, column);
     cout << "Массив с удаленными столбцами" << endl;
     printArray(arrayNum, row, column-counter);
     //Удаление
@@ -278,6 +279,7 @@ int* columnNumbers(int** array, const size_t row, const size_t column)
             }
         }
     }
+ 
     return arrayCheck;
 }
 
@@ -322,5 +324,10 @@ void newArray(int** array,int** arrayNew, const size_t row, const size_t column)
        {
             arrayNew[i][j] = array[i][arrayCheck[j]];
        }
+    }
+    if (arrayCheck != nullptr)
+    {
+        delete[] arrayCheck;
+        arrayCheck = nullptr;
     }
 }
